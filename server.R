@@ -14,7 +14,8 @@ shinyServer(function(input, output) {
   
   reac_data = reactive({
     #generate data
-    d = as.data.frame(mvrnorm(10000, c(0, 0), matrix(c(1, input$pop_cor, input$pop_cor, 1), ncol = 2), empirical = T))
+    set.seed(1)
+    d = as.data.frame(mvrnorm(2e4, c(0, 0), matrix(c(1, input$pop_cor, input$pop_cor, 1), ncol = 2), empirical = T))
     colnames(d) = c("A", "B")
     
     #cut A
@@ -46,9 +47,13 @@ shinyServer(function(input, output) {
       geom_point(position = position, alpha = .3) +
       geom_smooth(method = "lm", se = F) +
       annotate("text",
-               x = mean(d$A), y = mean(d$B),
-               label = str_c("Correlation in sample: ", round(cor(d$A, d$B), 3)),
-               color = "darkorange", size = 10)
+               x = -Inf,
+               y = Inf,
+               hjust = 0,
+               vjust = 1,
+               label = sprintf("Correlation in sample: %.2f", round(cor(d$A, d$B), 3)),
+               color = "darkorange",
+               size = 10)
   })
 
 })

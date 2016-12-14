@@ -41,8 +41,11 @@ shinyUI(fluidPage(
 
     # Show a plot of the generated distribution
     mainPanel(
-      HTML("Sometimes we are trying to measure something but only have a measure with a few possible values. This could be social classes or mental traits where we use a very short meaurement (e.g. 5 yes/no questions scored at 1 or 0). In practice this means that the correlations based on such data will be biased towards zero. This visualization helps you get a feel for how this works. Try playing around with the options to the left and see the effects. The bias is stronger when both variables are discretized and when they use a small number of possible values."),
+      HTML("Sometimes we measure something but only have a few possible values. This could be social classes or mental traits where we use a very short meaurement. For instance, if we have 5 items scored as either 0 or 1, the possible range of scores is [0-5]. In practice this means that (Pearson) correlations based on such data will be biased towards zero to some degree due to the reduced variation.<br><br>
+           The plot below shows the correlation between two variables, which may or may not be discretized. Try playing around with the options to the left and see the effects. The bias is stronger when both variables are discretized and when they use a small number of possible values. The effect also depends on how the variables are discretized (equal ranges or equal numbers).<br><br>
+           The simuatlion is based on 20,000 cases, so there may be minor sampling errors."),
       plotOutput("distPlot", width = "600px"),
+      hr(),
       HTML("Made by <a href='http://emilkirkegaard.dk'>Emil O. W. Kirkegaard</a> using <a href='http://shiny.rstudio.com/'/>Shiny</a> for <a href='http://en.wikipedia.org/wiki/R_%28programming_language%29'>R</a>. Source code available on <a href='https://github.com/Deleetdk/discretization'>Github</a>.")
     )
   )
