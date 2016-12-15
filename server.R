@@ -53,7 +53,8 @@ shinyServer(function(input, output) {
                vjust = 1,
                label = sprintf("Correlation in sample: %.2f", round(cor(d$A, d$B), 3)),
                color = "darkorange",
-               size = 10)
+               size = 10) +
+      theme_bw()
   })
 
 })
